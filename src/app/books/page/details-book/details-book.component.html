@@ -1,0 +1,108 @@
+<app-header></app-header>
+<pichincha-grid container direction=row wrap=wrap align_content=right align_items=right>
+
+    <pichincha-grid class="margin-top-50px" item spacing=5 xs=5 sm=false md=false lg=false xl=false>
+        <div class="div-start">
+            <pichincha-button class="buttom-size margin-left-30px" (clickbutton)="back()" size="large" id="idButton"
+                color="secondary" full-width="true">
+                {{detailsLabels.back}}
+            </pichincha-button>
+            <pichincha-button class="buttom-size margin-left-30px" (clickbutton)="edit()" size="large" id="idButton" color="primary"
+                full-width="true">
+                {{detailsLabels.edit}}
+            </pichincha-button>
+        </div>
+    </pichincha-grid>
+
+
+</pichincha-grid>
+
+<pichincha-grid container direction=row wrap=wrap justify=start>
+    <pichincha-grid class="margin-top-50px div-center height-div" item xs="6" sm=false md=false lg=false
+        xl=false>
+        <img [src]="book!.image" />
+    </pichincha-grid>
+    <pichincha-grid class="margin-top-50px" item xs="6" sm=false md=false lg=false xl=false>
+        <pichincha-grid container direction=row wrap=wrap justify=start>
+            <pichincha-grid item xs="12" sm=false md=false lg=false xl=false>
+                <pichincha-grid container direction=row wrap=wrap justify=start>
+                    <pichincha-grid item xs="4" sm=false md=false lg=false xl=false>
+                        <pichincha-typography variant="h5" color="black" weight="normal" weight_color="900">
+                            {{detailsLabels.title}}
+                        </pichincha-typography>
+                    </pichincha-grid>
+                    <pichincha-grid item xs="8" sm=false md=false lg=false xl=false>
+                        <pichincha-typography variant="h5" color="black" weight="normal" weight_color="900">
+                            {{book!.title}}
+                        </pichincha-typography>
+                    </pichincha-grid>
+                </pichincha-grid>
+            </pichincha-grid>
+            <pichincha-grid item xs="12" sm=false md=false lg=false xl=false>
+                <pichincha-grid container direction=row wrap=wrap justify=start>
+                    <pichincha-grid item xs="4" sm=false md=false lg=false xl=false>
+                        <pichincha-typography class="margin-labels" variant="h5" color="black" weight="normal"
+                            weight_color="900">
+                            {{detailsLabels.author}}
+                        </pichincha-typography>
+                    </pichincha-grid>
+                    <pichincha-grid item xs="8" sm=false md=false lg=false xl=false>
+                        <pichincha-typography class="margin-labels" variant="h5" color="black" weight="normal"
+                            weight_color="900">
+                            {{book!.author}}
+                        </pichincha-typography>
+                    </pichincha-grid>
+                </pichincha-grid>
+            </pichincha-grid>
+            <pichincha-grid item xs="12" sm=false md=false lg=false xl=false>
+                <pichincha-grid container direction=row wrap=wrap justify=start>
+                    <pichincha-grid item xs="4" sm=false md=false lg=false xl=false>
+                        <pichincha-typography class="margin-labels" variant="h5" color="black" weight="normal"
+                            weight_color="900">
+                            {{detailsLabels.url}}
+                        </pichincha-typography>
+                    </pichincha-grid>
+                    <pichincha-grid item xs="8" sm=false md=false lg=false xl=false>
+                        <pichincha-typography class="margin-labels" variant="h5" color="black" weight="normal"
+                            weight_color="900">
+                            {{book!.url}}
+                        </pichincha-typography>
+                    </pichincha-grid>
+                </pichincha-grid>
+            </pichincha-grid>
+            <pichincha-grid item xs="12" sm=false md=false lg=false xl=false>
+                <pichincha-grid container direction=row wrap=wrap justify=start>
+                    <pichincha-grid item xs="4" sm=false md=false lg=false xl=false>
+                        <pichincha-typography class="margin-labels" variant="h5" color="black" weight="normal"
+                            weight_color="900">
+                            {{detailsLabels.summary}}
+                        </pichincha-typography>
+                    </pichincha-grid>
+                    <pichincha-grid item xs="8" sm=false md=false lg=false xl=false>
+                        <pichincha-typography class="margin-labels" variant="h5" color="black" weight="normal"
+                            weight_color="900">
+                            {{book!.resume}}
+                        </pichincha-typography>
+                    </pichincha-grid>
+                </pichincha-grid>
+            </pichincha-grid>
+            <pichincha-grid item xs="12" sm=false md=false lg=false xl=false>
+                <pichincha-grid container direction=row wrap=wrap justify=start>
+                    <pichincha-grid item xs="4" sm=false md=false lg=false xl=false>
+                        <pichincha-typography class="margin-labels" variant="h5" color="black" weight="normal"
+                            weight_color="900">
+                            {{detailsLabels.categories}}
+                        </pichincha-typography>
+                    </pichincha-grid>
+                    <pichincha-grid item xs="8" sm=false md=false lg=false xl=false>
+                        <pichincha-typography class="margin-labels" variant="h5" color="black" weight="normal"
+                            weight_color="900">
+                            {{book!.category}}
+                        </pichincha-typography>
+                    </pichincha-grid>
+                </pichincha-grid>
+            </pichincha-grid>
+        </pichincha-grid>
+
+    </pichincha-grid>
+</pichincha-grid>

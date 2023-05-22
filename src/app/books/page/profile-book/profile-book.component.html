@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<pichincha-grid container direction=row wrap=wrap align_content=center align_items=center>
+
+    <pichincha-grid class="margin-top-50px" item spacing=1 xs=5 sm=false md=false lg=false xl=false>
+        <pichincha-typography class="margin-title" variant="amountSecondary" color="black" weight="normal"
+            weight_color="900" align="inherit">
+            {{profileLabels.title}}
+        </pichincha-typography>
+
+    </pichincha-grid>
+    <pichincha-grid class="margin-top-50px " item spacing=1 xs=5 sm=false md=false lg=false xl=false>
+        <div class="div-end">
+            <pichincha-button class="buttom-size" (clickbutton)="redirectCreatBook()" size="large" id="idButton"
+                color="secondary" full-width="true">
+                {{profileLabels.addNook}}
+            </pichincha-button>
+        </div>
+    </pichincha-grid>
+</pichincha-grid>
+<pichincha-grid container direction=row wrap=wrap align_content=center align_items=center>
+    <pichincha-grid class="margin-top-50px margin-title" item spacing=1 xs=2 sm=false md=false lg=false xl=false>
+        <pichincha-input inputValueAccessor id-element="user-register" label=''
+            placeholder={{profileLabels.placeholderSearch}} full-width="true"
+            (ichange)="setValue($event)"></pichincha-input>
+    </pichincha-grid>
+    <pichincha-grid class="div-end" item spacing=2 xs=8 sm=false md=false lg=false xl=false>
+        <select name="" id="" (change)="setSelected($event)">
+            {{selectOptins[0].label}}
+            <option *ngFor="let item of selectOptins; let i = index" value={{i}}>{{item.label}}</option>
+        </select>
+    </pichincha-grid>
+</pichincha-grid>
+<pichincha-grid container direction=row wrap=wrap align_content=center align_items=center>
+    <pichincha-grid class="margin-top-50px "
+        *ngFor="let book of books | filterBooks: searchModel | filterSelect:selected.value" item xs=3 sm=false md=false
+        lg=false xl=false>
+        <app-preview-book [book]="book" (clickAction)="clickBook($event)"></app-preview-book>
+    </pichincha-grid>
+</pichincha-grid>
+<pichincha-typography *ngIf="books.length == 0" class="margin-title div-center" variant="amountSecondary" color="black"
+    weight="normal" weight_color="900" align="inherit">
+    {{profileLabels.noResults}}
+</pichincha-typography>
+<pichincha-modal [open]="errorState" size=sm title-header="Error" description-header="desc" border-header=true
+    primary-button-label="Cerrar" disabled-primary-button=false secondary-button-label="Cancelar"
+    show-close-button=true>
+    {{errorModal}}
+</pichincha-modal>
