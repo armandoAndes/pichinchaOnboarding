@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+.div-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-start-center {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.div-end-center {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.div-start {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+
+.div-end {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+body {
+    margin: 0px;
+}
+
+select {
+    height: 50px;
+    border: 1px solid #dbdbdc;
+    border-radius: 4px;
+}
+.margin-top-50px {
+    margin-top: 50px;
+}
+.margin-left-30px {
+    margin-left: 30px;
+}
