@@ -1,0 +1,117 @@
+<app-header></app-header>
+<pichincha-grid container sm="12">
+    <pichincha-grid class="border-container margin-items-center" align_items="center" item direction="column" sm="6">
+        <pichincha-typography variant="amountSecondary" color="black" weight="normal" weight_color="900"
+            align="inherit">
+            {{!editState ? labelsRegister.title: labelsRegister.editTitle}}
+        </pichincha-typography>
+    </pichincha-grid>
+</pichincha-grid>
+
+<pichincha-grid container sm="12">
+    <pichincha-grid class="border-container margin-items-center" align_items="center" item direction="column" sm="5">
+        <pichincha-grid class="margin-items" item>
+            <pichincha-input inputValueAccessor id-element="user-register" label={{labelsRegister.nameUser}}
+                placeholder={{labelsRegister.placeholderName}} full-width="true"
+                [errorHelper]="registerForm.get('nameBook')!| messageError: labelsRegister.nameUser:registerForm.get('nameBook')! "
+                [state]="validatorsService.getStateInput(registerForm.get('nameBook')!)"
+                [value]="registerForm.get('nameBook')!.value"
+                (ichange)="validatorsService.setFormGroup(registerForm,'nameBook',$event)"
+                (ifocus)="validatorsService.setTouched(registerForm,'nameBook')"></pichincha-input>
+
+            <pichincha-input inputValueAccessor id-element="name-login" label={{labelsRegister.email}}
+                placeholder={{labelsRegister.emailPlaceholder}} full-width="true"
+                [errorHelper]="registerForm.get('urlBook')!| messageError: labelsRegister.email: registerForm.get('urlBook')!"
+                [state]="validatorsService.getStateInput(registerForm.get('urlBook')!)"
+                [value]="registerForm.get('urlBook')!.value"
+                (ichange)="validatorsService.setFormGroup(registerForm,'urlBook',$event)"
+                (ifocus)="validatorsService.setTouched(registerForm,'urlBook')"></pichincha-input>
+
+            <pichincha-input inputValueAccessor id-element="password-login" label={{labelsRegister.password}}
+                placeholder={{labelsRegister.passwordPlaceholder}} full-width="true"
+                [errorHelper]="registerForm.get('summary')!| messageError: labelsRegister.password: registerForm.get('summary')!"
+                [state]="validatorsService.getStateInput(registerForm.get('summary')!)"
+                [value]="registerForm.get('summary')!.value"
+                (ichange)="validatorsService.setFormGroup(registerForm,'summary',$event)"
+                (ifocus)="validatorsService.setTouched(registerForm,'summary')"></pichincha-input>
+        </pichincha-grid>
+    </pichincha-grid>
+
+
+    <pichincha-grid class="border-container margin-items-center" align_items="center" item direction="column" sm="5">
+        <pichincha-grid class="margin-items" item>
+            <pichincha-input inputValueAccessor id-element="user-register" label={{labelsRegister.nameAuthor}}
+                placeholder={{labelsRegister.placeholderName}} full-width="true"
+                [errorHelper]="registerForm.get('nameAuthor')!| messageError: labelsRegister.nameAuthor:registerForm.get('nameAuthor')! "
+                [state]="validatorsService.getStateInput(registerForm.get('nameAuthor')!)"
+                [value]="registerForm.get('nameAuthor')!.value"
+                (ichange)="validatorsService.setFormGroup(registerForm,'nameAuthor',$event)"
+                (ifocus)="validatorsService.setTouched(registerForm,'nameAuthor')"></pichincha-input>
+
+            <pichincha-input inputValueAccessor id-element="name-login" label={{labelsRegister.image}}
+                placeholder={{labelsRegister.emailPlaceholder}} full-width="true"
+                [errorHelper]="registerForm.get('image')!| messageError: labelsRegister.image:registerForm.get('image')! "
+                [state]="validatorsService.getStateInput(registerForm.get('image')!)"
+                [value]="registerForm.get('image')!.value"
+                (ichange)="validatorsService.setFormGroup(registerForm,'image',$event)"
+                (ifocus)="validatorsService.setTouched(registerForm,'image')"></pichincha-input>
+            <pichincha-check-box (clickCheck)="setFormGroup($event)" id-element=1 disabled=false
+                [value]="registerForm.get('public')!.value" [checked]="registerForm.get('public')!.value">
+                <pichincha-typography variant="bodyText" color="blue" weight="normal" weight_color="500"
+                    align="inherit">
+                    Publicar
+                </pichincha-typography> </pichincha-check-box>
+        </pichincha-grid>
+    </pichincha-grid>
+</pichincha-grid>
+
+<pichincha-grid class="border-container " container direction="row" sm="12">
+    <pichincha-grid class="margin-items margin-items-center" direction="row" sm="12" item>
+        <pichincha-typography variant="bodyText" color="black" weight="normal" weight_color="900" align="inherit">
+            {{labelsRegister.categorys}}
+        </pichincha-typography>
+    </pichincha-grid>
+</pichincha-grid>
+
+<pichincha-grid class="margin-items-cente" container direction=row wrap=wrap align_content=center align_items=center>
+    <pichincha-grid *ngFor="let category of categorys; let i = index" item xs=3 sm=false md=false lg=false xl=false>
+        <pichincha-check-box inputValueAccessor id-element="1" disabled="false" [value]="category.id"
+            (clickCheck)="setValueCategory($event,i)" [checked]="category.state">
+            <pichincha-typography variant="captionText">
+                {{category.description}}
+            </pichincha-typography>
+        </pichincha-check-box>
+    </pichincha-grid>
+    <pichincha-grid item xs=12 sm=false md=false lg=false xl=false>
+        <pichincha-typography *ngIf="registerForm.get('categorys')!.status === enumsControl.invalid" variant="bodyText"
+            color="danger" weight="normal" weight_color="900" align="inherit">
+            {{registerForm.get('categorys')!| messageError: 'Categorias': registerForm.get('categorys')!}}
+        </pichincha-typography>
+    </pichincha-grid>
+
+</pichincha-grid>
+
+<pichincha-grid container justify="center" sm="12">
+    <pichincha-grid class="border-container-login background-bottom-container" align_items="center" item direction="row"
+        sm="12">
+        <div class="div-end-center margin-top-buttons">
+            <div class="margin-bottom width-10">
+                <pichincha-button size="large" (clickbutton)="backHome()" id="idButton" color="secondary">
+                    {{labelsRegister.cancel}}
+                </pichincha-button>
+            </div>
+            <div class="margin-bottom width-10">
+                <pichincha-button size="large" (clickbutton)="createBook()" id="idButton" color="primary"
+                    [disabled]="registerForm.invalid">
+                    {{!editState ?labelsRegister.register: labelsRegister.update}}
+                </pichincha-button>
+            </div>
+        </div>
+    </pichincha-grid>
+</pichincha-grid>
+
+<pichincha-modal [open]="errorState" size=sm title-header="Error" description-header="desc" border-header=true
+    primary-button-label="Cerrar" disabled-primary-button=false secondary-button-label="Cancelar"
+    show-close-button=true>
+    {{errorModal}}
+</pichincha-modal>

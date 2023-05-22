@@ -1,0 +1,4 @@
+<div class="card div-center" (mouseover)='over()' (mouseleave)='leave()' (click)="click()"
+    [style]="stateOver ? 'background: rgba(249, 249 ,249 ,0.4);position: relative !important;': 'background: white;'">
+    <img class="imgZ"  [style]="stateOver ? 'z-index:-1;': 'z-index:5;'" [src]="book!.image" alt="" />
+</div>

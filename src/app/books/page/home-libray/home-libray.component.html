@@ -1,0 +1,85 @@
+<app-header></app-header>
+<pichincha-grid class="margin-page" container direction=row wrap=wrap justify=start>
+    <pichincha-grid class="margin-title" item xs="12" sm=false md=false lg=false xl=false>
+        <pichincha-typography variant="h2" color="black" weight="normal" weight_color="300">
+            {{labelsHomeLibrary.title}}
+        </pichincha-typography>
+    </pichincha-grid>
+    <pichincha-grid item xs="12" style=" height: 500px;" sm=false md=false lg=false xl=false>
+        <pichincha-grid container direction=row wrap=wrap justify=start>
+            <pichincha-typography *ngIf="books.length == 0" class="margin-title div-center" variant="amountSecondary"
+                color="black" weight="normal" weight_color="900" align="inherit">
+                {{labelsHomeLibrary.noResults}}
+            </pichincha-typography>
+            <pichincha-grid *ngFor="let book of books" item xs="3" sm=false md=false lg=false xl=false>
+                <app-preview-book [book]="book" (clickAction)="clickBook($event)"></app-preview-book>
+            </pichincha-grid>
+        </pichincha-grid>
+    </pichincha-grid>
+    <pichincha-grid class="margin-more" item xs="3" sm=false md=false lg=false xl=false>
+        <pichincha-button class="width-100" (clickbutton)="moreBooks()" size="large" id="idButton" color="secondary">
+            {{labelsHomeLibrary.more}}
+        </pichincha-button>
+    </pichincha-grid>
+    <pichincha-grid class="margin-title" item xs="12" sm=false md=false lg=false xl=false>
+        <pichincha-typography variant="h2" color="black" weight="normal" weight_color="900">
+            {{labelsHomeLibrary.publications}}
+        </pichincha-typography>
+    </pichincha-grid>
+    <pichincha-grid item xs="12" sm=false md=false lg=false xl=false>
+        <pichincha-typography *ngIf="books.length == 0" class="margin-title div-center" variant="amountSecondary"
+                color="black" weight="normal" weight_color="900" align="inherit">
+                {{labelsHomeLibrary.noResults}}
+            </pichincha-typography>
+        <pichincha-grid container direction=row wrap=wrap justify=start>
+            <pichincha-grid item xs="8" style=" height: 500px;" sm=false md=false lg=false xl=false>
+                <pichincha-grid container direction=row wrap=wrap justify=start>
+                    <pichincha-grid
+                        *ngFor="let book of books | filterBooks: searchModel |searchMultipleCategorys: categorysSelected"
+                        item xs="4" sm=false md=false lg=false xl=false>
+                        <app-preview-book [book]="book" (clickAction)="clickBook($event)"></app-preview-book>
+                    </pichincha-grid>
+                </pichincha-grid>
+            </pichincha-grid>
+            <pichincha-grid item xs="4" style="height: 200px;" sm=false md=false lg=false xl=false>
+                <div class="card-categorys" *ngIf="books.length > 0">
+                    <pichincha-grid class="margin-search" container direction=row wrap=wrap justify=start>
+                        <pichincha-grid class="margin-search-elements" item xs="12" sm=false md=false lg=false xl=false>
+                            <pichincha-typography variant="title" color="black" weight="normal" weight_color="900">
+                                {{labelsHomeLibrary.search}}
+                            </pichincha-typography>
+                        </pichincha-grid>
+                        <pichincha-grid class="margin-search-elements" item xs="12" sm=false md=false lg=false xl=false>
+                            <pichincha-input inputValueAccessor id-element="user-register" label=''
+                                placeholder={{labelsHomeLibrary.placeholderSearch}} (ichange)="setValue($event)"
+                                full-width="true"></pichincha-input><!-- colocar eventos -->
+                        </pichincha-grid>
+                        <pichincha-grid class="margin-search-elements" item xs="12" sm=false md=false lg=false xl=false>
+                            <pichincha-typography variant="title" color="black" weight="normal" weight_color="900">
+                                {{labelsHomeLibrary.categorys}}
+                            </pichincha-typography>
+                        </pichincha-grid>
+                        <pichincha-grid class="margin-search-elements" item xs="12" sm=false md=false lg=false xl=false>
+                            <pichincha-grid container direction=row wrap=wrap justify=start>
+                                <pichincha-grid *ngFor="let category of selectOptins; let i = index" item xs="6"
+                                    sm=false md=false lg=false xl=false>
+                                    <pichincha-check-box inputValueAccessor id-element="1" disabled="false"
+                                        [value]="category.value" (clickCheck)="setValueCategory($event,i)">
+                                        <pichincha-typography variant="captionText">
+                                            {{category.label}}
+                                        </pichincha-typography>
+                                    </pichincha-check-box>
+                                </pichincha-grid>
+                            </pichincha-grid>
+                        </pichincha-grid>
+                    </pichincha-grid>
+                </div>
+            </pichincha-grid>
+        </pichincha-grid>
+    </pichincha-grid>
+</pichincha-grid>
+<pichincha-modal [open]="errorState" size=sm title-header="Error" description-header="desc" border-header=true
+    primary-button-label="Cerrar" disabled-primary-button=false secondary-button-label="Cancelar"
+    show-close-button=true>
+    {{errorModal}}
+</pichincha-modal>
