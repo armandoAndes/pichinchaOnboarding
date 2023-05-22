@@ -1,0 +1,55 @@
+<pichincha-grid container justify="center" sm="10">
+    <pichincha-grid class="border-container" align_items="center" item direction="column" sm="8">
+        <pichincha-grid align_items="center" item direction="column">
+            <pichincha-typography variant="amountSecondary" color="black" weight="normal" weight_color="900"
+                align="inherit">
+                {{labelsLogin.title}}
+            </pichincha-typography>
+            <div class="border margin-items"></div>
+        </pichincha-grid>
+        <pichincha-grid class="margin-items" item>
+            <pichincha-input inputValueAccessor id-element="name-login" label={{labelsLogin.email}}
+                placeholder={{labelsLogin.emailPlaceholder}} full-width="true"
+                
+                [state]="validatorsService.getStateInput(loginForm.get('username')!)"
+                (ichange)="validatorsService.setFormGroup(loginForm,'username',$event)"
+                (ifocus)="validatorsService.setTouched(loginForm,'username')"
+                [errorHelper]="loginForm.get('username')!| messageError: labelsLogin.email: loginForm.get('username')!"></pichincha-input>
+        </pichincha-grid>
+        <pichincha-grid item>
+            <pichincha-input inputValueAccessor id-element="password-login" label={{labelsLogin.password}}
+                placeholder={{labelsLogin.passwordPlaceholder}} full-width="true"
+                [errorHelper]="loginForm.get('password')!| messageError: labelsLogin.password: loginForm.get('password')!"
+                [state]="validatorsService.getStateInput(loginForm.get('password')!)"
+                (ichange)="validatorsService.setFormGroup(loginForm,'password',$event)"
+                (ifocus)="validatorsService.setTouched(loginForm,'password')"></pichincha-input>
+        </pichincha-grid>
+    </pichincha-grid>
+</pichincha-grid>
+
+<pichincha-grid container justify="center" sm="10">
+    <pichincha-grid class="border-container-login background-bottom-container" align_items="center" item direction="row"
+        sm="8">
+        <div class="div-center">
+            <div class="width-40">
+                <pichincha-link href="/register-user/register-user" disabled="false">
+                    {{labelsLogin.register}}
+                </pichincha-link>
+            </div>
+            <div class="div-center width-30">
+                <pichincha-button class="width-100" (clickbutton)="login()" size="large" id="idButton"
+                    color="primary" [disabled]="loginForm.invalid">
+                    {{labelsLogin.login}}
+                </pichincha-button>
+                <pichincha-button class="width-100" (clickbutton)="test()" size="large" id="idButton"
+                    color="primary">
+                    Prueba
+                </pichincha-button>
+            </div>
+        </div>
+        <pichincha-typography class="div-center" *ngIf="errorState" variant="bodyText" color="danger" weight="normal"
+            weight_color="900" align="inherit">
+            {{messageError}}
+        </pichincha-typography>
+    </pichincha-grid>
+</pichincha-grid>
